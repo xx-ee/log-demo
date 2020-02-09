@@ -7,8 +7,8 @@ object MysqlUtil {
     //1.注册数据库驱动
     Class.forName("com.mysql.jdbc.Driver")
     //2.获取数据库连接
-//    val conn = DriverManager.getConnection("jdbc:mysql://192.168.2.30:3306/fluxdb","root","123456789")
-    val conn = DriverManager.getConnection("jdbc:mysql://192.168.154.3:3306/test_db","root","123456")
+    val conn = DriverManager.getConnection("jdbc:mysql://192.168.2.30:3306/fluxdb","root","123456789")
+//    val conn = DriverManager.getConnection("jdbc:mysql://192.168.154.3:3306/test_db","root","123456")
     //3.获取传输器
     val ps = conn.prepareStatement("select * from tongji2 where reportTime = ?")
     ps.setDate(1, new Date(t._1))
