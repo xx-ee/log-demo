@@ -1,5 +1,6 @@
 package com.log.controller;
 
+import com.log.response.DataGridView;
 import com.log.service.IDataViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class DataViewController {
     @Autowired
     private IDataViewService iDataViewService;
     @RequestMapping("/dataview")
-    public Object getDataView(){
-        return this.iDataViewService;
+    public DataGridView getDataView(){
+        return this.iDataViewService.queryCurrtData();
     }
 }
