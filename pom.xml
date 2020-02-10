@@ -12,6 +12,7 @@
         <module>LogServer</module>
         <module>App</module>
         <module>Spark-clear-data</module>
+        <module>Data-view</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

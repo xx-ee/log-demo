@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="MySQL2" targetRuntime="MyBatis3Simple"
+			 defaultModelType="flat">
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers"
+					  value="com.log.base.BaseMapper" />
+			<property name="caseSensitive" value="true" />
+			<!--<property name="beginningDelimiter" value="`"/> -->
+			<!--<property name="endingDelimiter" value="`"/> -->
+		</plugin>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://localhost:3306/test_db"
+						userId="root"
+						password="123456">
+		</jdbcConnection>
+		<javaModelGenerator targetPackage="com.log.model"
+							targetProject="D:\learn\logdemo-master\Data-view\src\main\java" />
+		<sqlMapGenerator targetPackage="commonmappers"
+						 targetProject="D:\learn\logdemo-master\Data-view\src\main\resources" />
+		<javaClientGenerator targetPackage="com.log.mapper"
+							 targetProject="D:\learn\logdemo-master\Data-view\src\main\java" type="XMLMAPPER" />
+
+
+		<table tableName="tongji2">
+			<generatedKey column="reportTime" sqlStatement="JDBC" />
+		</table>
+	</context>
+</generatorConfiguration>
