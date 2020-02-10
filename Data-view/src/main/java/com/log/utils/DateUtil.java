@@ -602,6 +602,7 @@ public class DateUtil
 
         System.out.println(todayFirstDate());
         System.out.println(todayLastDate());
+        System.out.println(getYyyy_MM_DD_Hh_Mm_Ss(new Date()).split(" ")[1]);
     }
 
     /**

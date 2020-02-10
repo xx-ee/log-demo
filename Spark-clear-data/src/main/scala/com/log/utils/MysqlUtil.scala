@@ -5,9 +5,9 @@ import java.sql.PreparedStatement
 object MysqlUtil {
   def upsertTongji2(t: (Long, Int, Int, Int, Int, Int)){
     //1.注册数据库驱动
-    Class.forName("com.mysql.jdbc.Driver")
+    Class.forName("com.mysql.cj.jdbc.Driver")
     //2.获取数据库连接
-    val conn = DriverManager.getConnection("jdbc:mysql://192.168.2.30:3306/fluxdb","root","123456789")
+    val conn = DriverManager.getConnection("jdbc:mysql://192.168.154.21:3306/fluxdb","root","123456789")
 //    val conn = DriverManager.getConnection("jdbc:mysql://192.168.154.3:3306/test_db","root","123456")
     //3.获取传输器
     val ps = conn.prepareStatement("select * from tongji2 where reportTime = ?")

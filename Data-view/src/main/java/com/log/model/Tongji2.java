@@ -1,5 +1,7 @@
 package com.log.model;
 
+import tk.mybatis.mapper.annotation.ColumnType;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -19,6 +21,8 @@ public class Tongji2 {
     private Integer newip;
 
     private Integer newcust;
+    @Transient
+    private String webTime;
 
     /**
      * @return reportTime
@@ -102,5 +106,13 @@ public class Tongji2 {
      */
     public void setNewcust(Integer newcust) {
         this.newcust = newcust;
+    }
+
+    public String getWebTime() {
+        return webTime;
+    }
+
+    public void setWebTime(String webTime) {
+        this.webTime = webTime;
     }
 }

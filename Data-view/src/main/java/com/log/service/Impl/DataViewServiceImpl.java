@@ -47,21 +47,16 @@ public class DataViewServiceImpl implements IDataViewService {
         }else
         {
             ArrayList<TongjiVo> tongjiVos = new ArrayList<>();
+            ArrayList<Tongji2> tongjiVos1 = new ArrayList<>();
             for (Tongji2 tongji2 : tongji2s) {
                 if (tongji2.getReporttime().before(DateUtil.todayLastDate())&&tongji2.getReporttime().after(DateUtil.todayFirstDate())){
-                    TongjiVo tongjiVo = new TongjiVo();
-                    tongjiVo.setRTime(DateUtil.getYYYY_MM_DD(tongji2.getReporttime()));
-                    tongjiVo.setNewcust(tongji2.getNewcust());
-                    tongjiVo.setNewip(tongji2.getNewip());
-                    tongjiVo.setPv(tongji2.getPv());
-                    tongjiVo.setUv(tongji2.getUv());
-                    tongjiVo.setVv(tongji2.getVv());
-                    tongjiVos.add(tongjiVo);
+                    tongji2.setWebTime(DateUtil.getYyyy_MM_DD_Hh_Mm_Ss(new Date()).split(" ")[1]);
+                    tongjiVos1.add(tongji2);
                 }
             }
             dataGridView.setCode(200);
-            dataGridView.setCount(tongjiVos.size()+0l);
-            dataGridView.setData(tongjiVos);
+            dataGridView.setCount(tongjiVos1.size()+0l);
+            dataGridView.setData(tongjiVos1);
             dataGridView.setMsg("查询成功");
         }
         return dataGridView;

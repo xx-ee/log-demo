@@ -12,6 +12,7 @@
             var tmpVv = [];
             var tmpNewIp = [];
             var tmpNewCust = [];
+            var webTime=[]
 
 
             var myChart = null;
@@ -19,10 +20,14 @@
                 myChart = echarts.init(document.getElementById("div_1"));
                 //{'reportTime'='xxx','pv'=xxx,'uv'=xx,'vv'=xx,'newip'=xx,'newcust'=xx}
                 $.get("/dataview",function(datax){
+                    console.log(datax)
+                    console.log(datax.data[0].reporttime)
+
 
                     if (datax!=null&&datax.data!=null&&datax.data.length>0)
                     {
                     datax=datax.data
+                        console.log(datax[0].pv)
                     tmpPv.push(datax[0].pv)
                     if (tmpPv.length>60){tmpPv.shift()}
 
@@ -35,10 +40,19 @@
                     tmpNewIp.push(datax[0].newip)
                     if (tmpNewIp.length>60){tmpNewIp.shift()}
 
+                    webTime.push(datax[0].webTime)
+                    if (webTime.length>60){webTime.shift()}
+
+
                     tmpNewCust.push(datax[0].newcust)
                     if (tmpNewCust.length>60){tmpNewCust.shift()}
                     }
 
+                    // console.log(tmpPv)
+                    // console.log(tmpUv)
+                    // console.log(tmpVv)
+                    // console.log(tmpNewIp)
+                    // console.log(tmpNewCust)
                     //3.构建option
                     var option = {
 
@@ -74,16 +88,18 @@
                                     color: '#ccc'
                                 }
                             },
-                            data: (function (){
-                                var now = new Date();
-                                var res = [];
-                                var len = 60;
-                                while (len--) {
-                                    res.unshift(now.toLocaleTimeString().replace(/^\D*/,''));
-                                    now = new Date(now - 2000);
-                                }
-                                return res;
-                            })()
+                            data:webTime
+                            // ,
+                            // data: (function (){
+                            //     var now = new Date();
+                            //     var res = [];
+                            //     var len = 60;
+                            //     while (len--) {
+                            //         res.unshift(now.toLocaleTimeString().replace(/^\D*/,''));
+                            //         now = new Date(now - 2000);
+                            //     }
+                            //     return res;
+                            // })()
                         },
                         yAxis: {
                             type: 'value',
@@ -98,12 +114,7 @@
                                 name: '点击量',
                                 type: 'line',
                                 stack: '总量',
-                                data: tmpPv,
-                                lineStyle:{
-                                    normal:{
-                                        width:2
-                                    }
-                                }
+                                data: tmpPv
                             },
                             {
                                 name: '独立访客数',
