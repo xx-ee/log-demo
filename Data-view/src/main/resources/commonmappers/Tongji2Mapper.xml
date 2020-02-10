@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.log.mapper.Tongji2Mapper">
+  <resultMap id="BaseResultMap" type="com.log.model.Tongji2">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="reportTime" jdbcType="DATE" property="reporttime" />
+    <result column="pv" jdbcType="INTEGER" property="pv" />
+    <result column="uv" jdbcType="INTEGER" property="uv" />
+    <result column="vv" jdbcType="INTEGER" property="vv" />
+    <result column="newip" jdbcType="INTEGER" property="newip" />
+    <result column="newcust" jdbcType="INTEGER" property="newcust" />
+  </resultMap>
+</mapper>
