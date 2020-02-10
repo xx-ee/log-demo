@@ -352,6 +352,23 @@ public class DateUtil
         }
         return null;
     }
+    public static Date todayFirstDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
+    public static Date todayLastDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        return calendar.getTime();
+    }
 
     /**
      * 获取指定区间内随机时间
@@ -583,13 +600,8 @@ public class DateUtil
 //        System.out.println(time);
 
 
-
-        String a1="20200102220001";
-        System.out.println(a1.substring(0,8));
-        Date parse = parse(a1, PATTERN_YYYYMMDDHHMMSS);
-        System.out.println(parse);
-        System.out.println(differentDays(parse,new Date()));
-
+        System.out.println(todayFirstDate());
+        System.out.println(todayLastDate());
     }
 
     /**

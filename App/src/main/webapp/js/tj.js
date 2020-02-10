@@ -254,7 +254,7 @@ function ar_get_random(n) {
 function ar_main() {
 
     //收集完日志 提交到的路径
-    var dest_path   = "http://127.0.0.1:8081/log?";
+    var dest_path   = "http://192.168.154.21:8081/log?";
     var expire_time = 30 * 60 * 1000;//会话超时时长
 
     //处理uv

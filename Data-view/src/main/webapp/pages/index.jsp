@@ -20,8 +20,9 @@
                 //{'reportTime'='xxx','pv'=xxx,'uv'=xx,'vv'=xx,'newip'=xx,'newcust'=xx}
                 $.get("/dataview",function(datax){
 
+                    if (datax!=null&&datax.data!=null&&datax.data.length>0)
+                    {
                     datax=datax.data
-                    
                     tmpPv.push(datax[0].pv)
                     if (tmpPv.length>60){tmpPv.shift()}
 
@@ -36,7 +37,7 @@
 
                     tmpNewCust.push(datax[0].newcust)
                     if (tmpNewCust.length>60){tmpNewCust.shift()}
-
+                    }
 
                     //3.构建option
                     var option = {

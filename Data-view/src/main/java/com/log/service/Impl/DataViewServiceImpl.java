@@ -34,11 +34,12 @@ public class DataViewServiceImpl implements IDataViewService {
         DataGridView dataGridView = new DataGridView();
 
         //查询当天数据
-        Tongji2 tongji21 = new Tongji2();
-        long currMills=System.currentTimeMillis()/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();
-        tongji21.setReporttime(new Date(currMills));
-        List<Tongji2> datas = this.tongji2Mapper.select(tongji21);
-        if(datas==null||datas.size()==0)
+//        Tongji2 tongji21 = new Tongji2();
+//        long currMills=System.currentTimeMillis()/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();
+//        tongji21.setReporttime(new Date(currMills));
+//        List<Tongji2> datas = this.tongji2Mapper.select(tongji21);
+        List<Tongji2> tongji2s = this.tongji2Mapper.selectAll();
+        if(tongji2s==null||tongji2s.size()==0)
         {
             dataGridView.setCode(200);
             dataGridView.setCount(0l);
@@ -46,15 +47,17 @@ public class DataViewServiceImpl implements IDataViewService {
         }else
         {
             ArrayList<TongjiVo> tongjiVos = new ArrayList<>();
-            for (Tongji2 tongji2 : datas) {
-                TongjiVo tongjiVo = new TongjiVo();
-                tongjiVo.setRTime(DateUtil.getYYYY_MM_DD(tongji2.getReporttime()));
-                tongjiVo.setNewcust(tongji2.getNewcust());
-                tongjiVo.setNewip(tongji2.getNewip());
-                tongjiVo.setPv(tongji2.getPv());
-                tongjiVo.setUv(tongji2.getUv());
-                tongjiVo.setVv(tongji2.getVv());
-                tongjiVos.add(tongjiVo);
+            for (Tongji2 tongji2 : tongji2s) {
+                if (tongji2.getReporttime().before(DateUtil.todayLastDate())&&tongji2.getReporttime().after(DateUtil.todayFirstDate())){
+                    TongjiVo tongjiVo = new TongjiVo();
+                    tongjiVo.setRTime(DateUtil.getYYYY_MM_DD(tongji2.getReporttime()));
+                    tongjiVo.setNewcust(tongji2.getNewcust());
+                    tongjiVo.setNewip(tongji2.getNewip());
+                    tongjiVo.setPv(tongji2.getPv());
+                    tongjiVo.setUv(tongji2.getUv());
+                    tongjiVo.setVv(tongji2.getVv());
+                    tongjiVos.add(tongjiVo);
+                }
             }
             dataGridView.setCode(200);
             dataGridView.setCount(tongjiVos.size()+0l);
