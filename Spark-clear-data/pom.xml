@@ -17,7 +17,7 @@
         <slf4j.version>1.7.7</slf4j.version>
         <junit.version>4.11</junit.version>
         <spark.version>2.3.4</spark.version>
-        <hadoop.version>2.6.5</hadoop.version>
+        <hadoop.version>2.7.0</hadoop.version>
         <hbase.version>1.2.6</hbase.version>
         <sparkstreaming-kafka.version>1.6.3</sparkstreaming-kafka.version>
         <zkclient.version>0.10</zkclient.version>
